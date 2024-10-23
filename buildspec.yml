@@ -21,9 +21,9 @@ phases:
   post_build:
     commands:
       - echo Tagging the Docker image...
-      - docker tag ecr-repo-for-npm-app:latest 010928211649.dkr.ecr.us-east-1.amazonaws.com/ecr-repo-for-npm-app:latest
+      - docker tag ecr-repo-for-npm-app:latest 010928211649.dkr.ecr.us-east-1.amazonaws.com/aws-ecs-docker:latest
       - echo Pushing the Docker image to ECR...
-      - docker push 010928211649.dkr.ecr.us-east-1.amazonaws.com/ecr-repo-for-npm-app:latest
+      - docker push 010928211649.dkr.ecr.us-east-1.amazonaws.com/aws-ecs-docker:latest
 
 artifacts:
   files:
