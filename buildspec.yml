@@ -13,7 +13,11 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 010928211649.dkr.ecr.us-east-1.amazonaws.com
       - echo "Setting IMAGE_TAG based on commit hash or default to 'latest'..."
-      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7) || IMAGE_TAG="latest"
+      - |
+        IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+        if [ -z "$IMAGE_TAG" ]; then
+          IMAGE_TAG="latest"
+        fi
       - echo "Using IMAGE_TAG: $IMAGE_TAG"
 
   build:
